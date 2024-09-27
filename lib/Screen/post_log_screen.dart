@@ -22,7 +22,7 @@ class _PostLogScreenState extends State<PostLogScreen> {
     };
     try {
       var response = await http.post(url, body: data);
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         print(jsonData);
         print("Login Successful");
