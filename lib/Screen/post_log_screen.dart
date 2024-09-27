@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class PostRegScreen extends StatefulWidget {
-  const PostRegScreen({super.key});
+class PostLogScreen extends StatefulWidget {
+  const PostLogScreen({super.key});
 
   @override
-  State<PostRegScreen> createState() => _PostRegScreenState();
+  State<PostLogScreen> createState() => _PostLogScreenState();
 }
 
-class _PostRegScreenState extends State<PostRegScreen> {
+class _PostLogScreenState extends State<PostLogScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   registerUser(String email, String password) async {
-    Uri url = Uri.parse("https://jsonplaceholder.typicode.com/users");
+    Uri url = Uri.parse("https://reqres.in/api/login");
     var data = {
       "email": email,
       "password": password,
@@ -25,10 +25,10 @@ class _PostRegScreenState extends State<PostRegScreen> {
       if (response.statusCode == 201) {
         var jsonData = jsonDecode(response.body);
         print(jsonData);
-        print("Register Successful");
+        print("Login Successful");
       } else {
         var error = jsonDecode(response.body);
-        print("Unable to register: ${error['error']}");
+        print("Unable to Login: ${error['error']}");
       }
     } catch (e) {
       print("Error: $e");
@@ -90,7 +90,7 @@ class _PostRegScreenState extends State<PostRegScreen> {
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.blue),
                 child: const Text(
-                  "Register",
+                  "Login",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
